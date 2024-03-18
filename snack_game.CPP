@@ -61,6 +61,53 @@ q:
     }
 }
 
+void run()
+{
+    int px, py, jy, jx, r;
+    px = tx[0];
+    py = ty[0];
+    tx[0] = sx;
+    ty[0] = sy;
+    for (int n = 1; n < c; n++)
+    {
+        jx = tx[n];
+        jy = ty[n];
+        tx[n] = px;
+        ty[n] = py;
+        px = jx;
+        py = jy;
+    }
+
+    switch (b)
+    {
+    case 0:
+    {
+        sy--;
+        delay(50);
+    }
+    break;
+    case 1:
+    {
+        sy++;
+        delay(50);
+    }
+    break;
+    case 2:
+    {
+        sx--;
+    }
+    break;
+    case 3:
+    {
+        sx++;
+    }
+    break;
+    default:
+        exit(0);
+        break;
+    }
+}
+
 int main()
 {
 
@@ -68,6 +115,13 @@ int main()
 u:
 {
     in();
+    while (l > -1)
+    {
+        delay(100);
+        {
+            run();
+        }
+    }
 }
     clrscr();
     gotoxy(36, 12);
