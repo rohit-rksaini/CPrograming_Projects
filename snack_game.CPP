@@ -108,6 +108,81 @@ void run()
     }
 }
 
+void frt()
+{
+    for (int r = 0; r < c; r++)
+        if (tx[r] == sx && ty[r] == sy)
+        {
+            delay(1000);
+            goto a;
+        }
+    if (sx < 1 || sx > h || sy < 1 || sy > w)
+    {
+    a:
+        clrscr();
+        l = l - 1;
+        gotoxy(30, 12);
+        textcolor(GREEN);
+        cprintf("YOUR LIFE IS:- %d", l);
+        g = 1;
+
+        if (g == 1)
+            delay(1098);
+        clrscr();
+        sx = h / 2;
+        sy = w / 2;
+    }
+
+    if (l < 0)
+    {
+    gm:
+    {
+        clrscr();
+        gotoxy(36, 12);
+        textcolor(BLINK + YELLOW);
+        cprintf("GAME OVER");
+        delay(2000);
+    }
+    }
+    if (sx == fx && sy == fy)
+
+    {
+    q:
+        int q;
+        {
+            fx = rand() % h;
+            fy = rand() % w;
+        }
+        if (fx == 1 || fy == 1)
+            goto q;
+        if (fx <= 10)
+        {
+            fx = fx + 11;
+        }
+        if (fy <= 10)
+        {
+            fy = fy + 11;
+        }
+
+        s = s + 2;
+        c = c + 1;
+        tm = 20;
+    }
+    if (sx == ex && sy == ey)
+
+    {
+    p:
+        int p;
+        {
+            ex = rand() % h;
+            ey = rand() % w;
+        }
+        if (ex == 1 || ey == 1)
+            goto p;
+        s = s + 6;
+    }
+}
+
 int main()
 {
 
@@ -120,6 +195,7 @@ u:
         delay(100);
         {
             run();
+            frt();
         }
     }
 }
