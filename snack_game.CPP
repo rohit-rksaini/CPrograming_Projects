@@ -183,6 +183,73 @@ void frt()
     }
 }
 
+void cmd()
+{
+  if (kbhit())
+  {
+
+    switch (getch())
+    {
+      if (sx < 1 || sx > h || sy < 1 || sy > w)
+      {
+      }
+
+    case 72:
+    {
+      b = 0;
+    }
+    break;
+    case 80:
+    {
+      b = 1;
+    }
+    break;
+    case 75:
+    {
+      b = 2;
+    }
+    break;
+    case 77:
+    {
+      b = 3;
+    }
+    break;
+    case 32:
+    {
+      gotoxy(18, 11);
+      system("pause");
+    }
+    break;
+    case 13:
+    {
+      clrscr();
+      gotoxy(32, 11);
+      textcolor(LIGHTRED);
+      cprintf("RESTART GAME");
+      delay(1000);
+      l = 3;
+      s = 0;
+      c = 0;
+      sx = h / 2;
+      sy = w / 2;
+    }
+    break;
+    case 27:
+    {
+      clrscr();
+      gotoxy(32, 11);
+      textcolor(YELLOW + BLUE + BLINK);
+      cprintf("EXIT GAME");
+      delay(3000);
+      exit(0);
+    }
+    break;
+    default:
+      break;
+    }
+  }
+}
+
 int main()
 {
 
@@ -196,6 +263,7 @@ u:
         {
             run();
             frt();
+            cmd();
         }
     }
 }
