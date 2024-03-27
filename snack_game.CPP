@@ -185,69 +185,116 @@ void frt()
 
 void cmd()
 {
-  if (kbhit())
-  {
+    if (kbhit())
+    {
 
-    switch (getch())
-    {
-      if (sx < 1 || sx > h || sy < 1 || sy > w)
-      {
-      }
+        switch (getch())
+        {
+            if (sx < 1 || sx > h || sy < 1 || sy > w)
+            {
+            }
 
-    case 72:
+        case 72:
+        {
+            b = 0;
+        }
+        break;
+        case 80:
+        {
+            b = 1;
+        }
+        break;
+        case 75:
+        {
+            b = 2;
+        }
+        break;
+        case 77:
+        {
+            b = 3;
+        }
+        break;
+        case 32:
+        {
+            gotoxy(18, 11);
+            system("pause");
+        }
+        break;
+        case 13:
+        {
+            clrscr();
+            gotoxy(32, 11);
+            textcolor(LIGHTRED);
+            cprintf("RESTART GAME");
+            delay(1000);
+            l = 3;
+            s = 0;
+            c = 0;
+            sx = h / 2;
+            sy = w / 2;
+        }
+        break;
+        case 27:
+        {
+            clrscr();
+            gotoxy(32, 11);
+            textcolor(YELLOW + BLUE + BLINK);
+            cprintf("EXIT GAME");
+            delay(3000);
+            exit(0);
+        }
+        break;
+        default:
+            break;
+        }
+    }
+}
+
+void run()
+{
+    int px, py, jy, jx, r;
+    px = tx[0];
+    py = ty[0];
+    tx[0] = sx;
+    ty[0] = sy;
+    for (int n = 1; n < c; n++)
     {
-      b = 0;
+        jx = tx[n];
+        jy = ty[n];
+        tx[n] = px;
+        ty[n] = py;
+        px = jx;
+        py = jy;
+    }
+
+    switch (b)
+    {
+    case 0:
+    {
+        sy--;
+        delay(50);
     }
     break;
-    case 80:
+    case 1:
     {
-      b = 1;
+        sy++;
+        delay(50);
     }
     break;
-    case 75:
+    case 2:
     {
-      b = 2;
+        sx--;
     }
     break;
-    case 77:
+    case 3:
     {
-      b = 3;
-    }
-    break;
-    case 32:
-    {
-      gotoxy(18, 11);
-      system("pause");
-    }
-    break;
-    case 13:
-    {
-      clrscr();
-      gotoxy(32, 11);
-      textcolor(LIGHTRED);
-      cprintf("RESTART GAME");
-      delay(1000);
-      l = 3;
-      s = 0;
-      c = 0;
-      sx = h / 2;
-      sy = w / 2;
-    }
-    break;
-    case 27:
-    {
-      clrscr();
-      gotoxy(32, 11);
-      textcolor(YELLOW + BLUE + BLINK);
-      cprintf("EXIT GAME");
-      delay(3000);
-      exit(0);
+        sx++;
     }
     break;
     default:
-      break;
+        exit(0);
+        break;
     }
-  }
 }
 
 int main()
@@ -264,6 +311,7 @@ u:
             run();
             frt();
             cmd();
+            run();
         }
     }
 }
